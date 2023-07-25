@@ -12,17 +12,22 @@ def plot(data,title=""):
     plt.title(title)
     plt.show()
     
-learning_rate=0.05
+def plot_two(data1,data2):
+    plt.plot(data1)
+    plt.plot(data2)
+    plt.show()
+    
+learning_rate=0.1
 
 #%%Network using matrix multiplication in backprop
 #create a network with three layers and 30 neurons in a hidden layer
 NN=Network([784,30,10])
 #train the network
-t_l,t_a,v_l,v_a=NN.fit(training_data,epochs=50,
+t_l,t_a,v_l,v_a=NN.fit(training_data,epochs=30,lmbda=10,
        validation_data=validation_data,learning_rate=learning_rate,monitor_learning=True)
 
 #plot the training progress
-plot(t_l,"training loss")
 plot(t_a,"training accuracy")
-plot(v_l,"validation loss")
 plot(v_a,"validation accuracy")
+
+plot_two(t_a,v_a)
