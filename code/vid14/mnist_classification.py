@@ -6,6 +6,10 @@ import warnings
 warnings.simplefilter("ignore")
 
 training_data=load_training_data()
+x,y=training_data
+#x=x[:100]
+#y=y[:100]
+training_data=(x,y)
 validation_data=load_validation_data()
 
 def plot(data,title=""):
@@ -26,8 +30,8 @@ def plot_two(data1,data2,labels):
 NN=Network([784,30,10])
 
 #train the network
-_,_,vl,v_a=NN.fit(training_data,max_epochs=500,lmbda=5,early_stop_after=10,total_halving=12,
-                  batch_size=16,momentum_coeff=0.5,validation_data=validation_data,
+_,_,vl,v_a=NN.fit(training_data,max_epochs=500,lmbda=10,early_stop_after=10,
+                  batch_size=8,momentum_coeff=0.5,validation_data=validation_data,
                   learning_rate=0.5,monitor_learning=False)
 
 plot(vl)

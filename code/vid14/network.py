@@ -164,6 +164,7 @@ class Network():
         validation_loss,validation_accuracy=[],[]
         halved=0
         epochs_const_eta=0
+        prev_best=0
         for i in range(max_epochs):
             random_state=np.random.get_state()
             np.random.shuffle(X)
@@ -202,13 +203,17 @@ class Network():
                 validation_loss.append(val_loss)
                 validation_accuracy.append(val_accuracy)
                 #early stopping and learning rate halving
+                epochs_const_eta+=1
+
                 if len(validation_accuracy)>2*es:
-                    epochs_const_eta+=1
-                    if epochs_const_eta>=total_halving:
+                    if epochs_const_eta>=es:
+                        prev_best=max(prev_best,np.mean(validation_accuracy[-2*es:-es]))
+
                         #if no improvement on average in the last es epochs compared to previous es epochs
-                        if np.mean(validation_accuracy[-es:])<np.mean(validation_accuracy[-2*es:-es]):
+                        if np.mean(validation_accuracy[-es:])<prev_best:
                             eta/=2
                             halved+=1
+                            epochs_const_eta=0
                             print(f"Learning rate halved {halved}/{total_halving} times.")
                         if halved>=total_halving: 
                             print(f"Early stopped. No improvement in {es} epochs in learning rate halved {total_halving} times.")
