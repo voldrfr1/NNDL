@@ -23,12 +23,12 @@ def plot_two(data1,data2,labels):
 
 #%%Network using matrix multiplication in backprop
 #create a network with three layers and 30 neurons in a hidden layer
-NN=Network([784,30,10])
+NN=Network([784,40,10])
 
 #train the network
 _,_,vl,v_a=NN.fit(training_data,max_epochs=500,lmbda=5,early_stop_after=10,
                   batch_size=10,momentum_coeff=0.5,validation_data=validation_data,
-                  learning_rate=0.5,monitor_learning=False)
+                  learning_rate=0.05,monitor_learning=False)
 
 plot(vl)
 plot(v_a)
