@@ -1,4 +1,5 @@
 # Neural Networks and Deep Learning
+![Cover image](cover.png)
 
 This repository contains code and powerpoint presentations as used in the YouTube video series [link](https://www.youtube.com/playlist?list=PL2o3po04f3KZL0xq1PFjn3FUGl-uEiXEn) . Contains two directories:
 
