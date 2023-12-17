@@ -39,8 +39,8 @@ plot_mnist(training_data[:16])
 #create a network with three layers and 20 neurons in a hidden layer
 NN=Network([784,20,10])
 #train the network
-NN.fit(training_data,epochs=10,validation_data=validation_data)
-NN.save("network")
+NN.fit(training_data,epochs=1,validation_data=validation_data)
+NN.save("nn")
 
 #load the saved network and verify it was loaded successfully
 nn2=Network([784,20,10])

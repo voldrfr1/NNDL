@@ -173,8 +173,8 @@ class Network():
 
     def save(self, filename):
         """Saves the weights and biases to a .npz archive"""
-        np.savez(filename, biases=self.biases,
-                 weights=self.weights)  # saves multiple arrays
+        np.savez(filename, biases=np.array(self.biases,dtype=object), #cast to np array with object type to allow saving
+                 weights=np.array(self.weights,dtype=object))  # saves multiple arrays
 
     def load(self, filename):
         """Loads saved weights and biases from .npz archive."""
